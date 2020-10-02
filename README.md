@@ -17,3 +17,5 @@ To run the image, run:
 - MySQL.
 - phpMyAdmin
 - WordPress.
+
+![Screenshot from 2020-10-02 10-24-22](https://user-images.githubusercontent.com/58333462/94908610-dbdaf780-0499-11eb-90d5-e7dde5aeff82.png)
