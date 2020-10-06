@@ -18,6 +18,7 @@ FROM debian:buster
 # Install necessary packages.
 RUN apt-get update
 RUN apt-get -y upgrade
+RUN apt-get install -y openssl
 RUN apt-get install -y vim
 RUN apt-get install -y nginx
 RUN apt-get install -y php7.3-fpm
