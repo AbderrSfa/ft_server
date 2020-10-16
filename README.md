@@ -10,7 +10,7 @@ To Build the image, run:
 
 To run the image, run:
 
-`docker run -it -p 80:80 443:443 ft_server`
+`docker run -it -p 80:80 -p 443:443 ft_server`
 
 ## The following are created automatically
 - A self-signed SSL certificate.
