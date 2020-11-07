@@ -34,7 +34,7 @@ RUN mkdir -p /var/www/ft_server
 RUN mv /root/index.html /var/www/ft_server/
 RUN mv /root/resources /var/www/ft_server/resources/
 
-# Move start.sh script, nginx index file, and nginx config file to thier appropriate directories.
+# Move start.sh script, nginx index file, and nginx config file to their appropriate directories.
 RUN mv /root/start.sh ./
 RUN mv /var/www/html/index.nginx-debian.html /var/www/ft_server/index.nginx-debian.html
 RUN mv /root/default /etc/nginx/sites-available/default
