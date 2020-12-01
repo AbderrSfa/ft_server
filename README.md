@@ -17,3 +17,5 @@ To run the image, run:
 - MySQL.
 - phpMyAdmin
 - WordPress.
+
+<img width="2300" alt="Screen Shot 2020-12-01 at 10 57 05 AM" src="https://user-images.githubusercontent.com/58333462/100725222-0f67ce80-33c4-11eb-943b-a1977a73348c.png">
