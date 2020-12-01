@@ -1,21 +1,28 @@
 #!bin/bash
 
 # Start MySQL, php7.3-fpm, and Nginx.
+# Variables store output from last command. 0 if successful, non-zero if failed.
 service mysql start
-service php7.3-fpm start
-service nginx start
+DATABASE=$?
 
-# Variable SERVER stores output from last command. 0 if successful, non-zero if failed.
-SERVER=$?
+service php7.3-fpm start
+PHP_FPM=$?
+
+service nginx start
+ENGINEX=$?
 
 echo " ---> Server is running..."
 
-# While nginx is running, the container remains up.
-while [ "$SERVER" = 0 ]
+# While services are running, the container remains up.
+while [ "$ENGINEX" = 0 ] && [ "$DATABASE" = 0 ] && [ "$PHP_FPM" = 0 ]
 do
 	sleep 30
 	service nginx status > /dev/null
-	SERVER=$?
+	ENGINEX=$?
+	service mysql status > /dev/null
+	DATABASE=$?
+	service php7.3-fpm status > /dev/null
+	PHP_FPM=$?
 done
 
 # If an error occurs, all services are stopped and container exits.

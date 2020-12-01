@@ -24,28 +24,29 @@ RUN apt-get install -y nginx
 RUN apt-get install -y php7.3-fpm
 RUN apt-get install -y wget
 RUN apt-get install -y php-mysql
+RUN apt-get install -y php-mbstring
 RUN apt-get install -y mariadb-server
 
 # Copy files into container.
-COPY srcs /root
+COPY srcs ./srcs
 
 # Create ft_server directory, move index file and its resources to the directory.
 RUN mkdir -p /var/www/ft_server
-RUN mv /root/index.html /var/www/ft_server/
-RUN mv /root/resources /var/www/ft_server/resources/
+RUN mv /srcs/index.html /var/www/ft_server/
+RUN mv /srcs/resources /var/www/ft_server/resources/
 
 # Move start.sh script, nginx index file, and nginx config file to their appropriate directories.
-RUN mv /root/start.sh ./
+RUN mv /srcs/start.sh ./
 RUN mv /var/www/html/index.nginx-debian.html /var/www/ft_server/index.nginx-debian.html
-RUN mv /root/default /etc/nginx/sites-available/default
+RUN mv /srcs/default /etc/nginx/sites-available/default
 
 # Generate self-signed certificate and key.
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/selfsigned-ft_server.key -out /etc/ssl/certs/selfsigned-ft_server.crt -subj "/C=MA/ST=Beni Mellal-Khenifra/L=Khouribga/O=1337/CN=ft_server"
 
 # Run phpMyAdmin, Wordpress and database scripts.
-RUN bash /root/phpMyAdmin/phpmyadmin.sh
-RUN bash /root/WordPress/wordpress-setup.sh
-RUN bash /root/MySQL/database.sh
+RUN bash /srcs/phpMyAdmin/phpmyadmin.sh
+RUN bash /srcs/WordPress/wordpress-setup.sh
+RUN bash /srcs/MySQL/database.sh
 
 # Run start.sh script
 CMD bash start.sh
